@@ -5,11 +5,11 @@
 ![Accuracy](https://img.shields.io/badge/Accuracy-89.67%25-brightgreen)
 
 ## 📌 Overview
-Predict kiya ki patient ko **HantaVirus syndrome** hoga ya nahi  
+Predicted whether a patient is likely to have **HantaVirus syndrome**  
 using Machine Learning on epidemiological outbreak data.  
-Dataset me confirmed cases, deaths, hospitalization aur transmission-related features use kiye gaye.
+The dataset included features such as confirmed cases, deaths, hospitalization records, and transmission-related information.
 
-Model ko outbreak patterns aur disease severity analyze karne ke liye train kiya gaya.
+The model was trained to analyze outbreak patterns and disease severity.
 
 ---
 
@@ -58,7 +58,11 @@ jupyter notebook
 ---
 
 ## 💡 Key Learnings
-- Epidemiological datasets me preprocessing ka huge impact hota hai
+- Preprocessing has a huge impact on epidemiological datasets
+- XGBoost captured outbreak patterns better than RandomForest
+- ICU admissions and fatality rate were strong predictive indicators
+- Geographic features helped improve outbreak prediction
+- Real-world healthcare datasets are noisy, making feature engineering very important- Epidemiological datasets me preprocessing ka huge impact hota hai
 - XGBoost outbreak patterns ko better capture karta hai
 - ICU admissions aur fatality rate strong indicators nikle
 - Geographic features outbreak prediction me useful rahe
