@@ -1,69 +1,64 @@
-# 🦠 HantaVirus Prediction
+# 🦠 Hantavirus Death Prediction
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue)
 ![ML](https://img.shields.io/badge/ML-XGBoost-green)
-![Accuracy](https://img.shields.io/badge/Accuracy-89.67%25-brightgreen)
+![R2 Score](https://img.shields.io/badge/R2%20Score-96.57%25-brightgreen)
+![MAE](https://img.shields.io/badge/MAE-3.89-yellow)
 
 ## 📌 Overview
-Predicted whether a patient is likely to have **HantaVirus syndrome**  
-using Machine Learning on epidemiological outbreak data.  
-The dataset included features such as confirmed cases, deaths, hospitalization records, and transmission-related information.
+Predicted the **number of deaths** caused by Hantavirus (Andes Virus) across different countries and years  
+using Machine Learning on global epidemiological data spanning **1993–2026**.
 
-The model was trained to analyze outbreak patterns and disease severity.
+Dataset source: [Kaggle — Hantavirus Andes Virus Global Epidemiology](https://www.kaggle.com/datasets/zkskhurram/hantavirus-andes-virus-global-epidemiology)
 
 ---
 
 ## 📊 Results
-| Model | Accuracy |
-|-------|----------|
-| Random Forest (baseline) | 81.42% |
-| **XGBoost ✅** | **89.67%** |
+
+| Model | MAE | R2 Score |
+|-------|-----|----------|
+| Random Forest (baseline) | 7.17 | 0.9224 |
+| **XGBoost ✅** | **3.89** | **0.9657** |
 
 ---
 
 ## 🔧 Feature Engineering
+
 | Feature | Description |
 |---------|-------------|
-| confirmed_cases | Total confirmed cases |
-| deaths | Number of deaths |
-| recovered | Total recovered patients |
-| case_fatality_rate | Death percentage |
-| hospitalized | Hospitalized patients |
-| icu_admissions | ICU admissions |
-| human_to_human_cases | Human transmission cases |
-| latitude / longitude | Geographic outbreak location |
+| icu_to_hospital_ratio | ICU admissions / hospitalized |
+| hospitalization_rate | Hospitalized / confirmed cases |
+| distance_from_equator | Absolute latitude value |
+| is_northern_hemisphere | 1 if latitude > 0, else 0 |
+| region_avg_fatality | Mean fatality rate per WHO region |
+| syndrome_region | Syndrome + WHO region combined |
+| h2h_intensity | Confirmed cases × human-to-human cases |
 
 ---
 
 ## 🛠️ Tech Stack
+
 ![Python](https://img.shields.io/badge/-Python-black?logo=python)
 ![Pandas](https://img.shields.io/badge/-Pandas-black?logo=pandas)
-![NumPy](https://img.shields.io/badge/-NumPy-black?logo=numpy)
 ![XGBoost](https://img.shields.io/badge/-XGBoost-black)
+![Scikit-Learn](https://img.shields.io/badge/-ScikitLearn-black?logo=scikit-learn)
 ![Seaborn](https://img.shields.io/badge/-Seaborn-black)
+![Matplotlib](https://img.shields.io/badge/-Matplotlib-black)
 
 ---
 
 ## 🚀 How to Run
+
 ```bash
-git clone https://github.com/DivyTiwari-ship-it/HantaVirus.git
-
-cd HantaVirus
-
+git clone https://github.com/DivyTiwari-ship-it/HantaVirus
 pip install -r requirements.txt
-
-jupyter notebook
+jupyter notebook hantavirus.ipynb
 ```
 
 ---
 
 ## 💡 Key Learnings
-- Preprocessing has a huge impact on epidemiological datasets
-- XGBoost captured outbreak patterns better than RandomForest
-- ICU admissions and fatality rate were strong predictive indicators
-- Geographic features helped improve outbreak prediction
-- Real-world healthcare datasets are noisy, making feature engineering very important- Epidemiological datasets me preprocessing ka huge impact hota hai
-- XGBoost outbreak patterns ko better capture karta hai
-- ICU admissions aur fatality rate strong indicators nikle
-- Geographic features outbreak prediction me useful rahe
-- Real-world healthcare data noisy hota hai, feature engineering matters a lot
+- Feature engineering (region fatality, ICU ratio) significantly improved model performance
+- XGBoost outperformed RandomForest — MAE almost halved (7.17 → 3.89)
+- Epidemiological data requires Regression, not Classification — deaths is a continuous variable
+- WHO region-based grouping was one of the most impactful features
